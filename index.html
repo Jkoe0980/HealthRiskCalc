@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!--
+    Author: Joey Koenig 
+    Project: Health Insurance Risk Calculator
+    Hosted Link:
+    -->
+
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Health Insurance Risk Calculator</title>
+        <link rel='stylesheet' href='index.css'>
+    </head>
+
+    <body>
+        <h1>Health Insurance Risk Calculator</h1>
+        <h2>Before we begin, here's some instructions:</h2>
+        <p>This calculator is meant to simulate the calculators used by health insurance providers to determine your health risk category. 
+            Your height and weight are needed to calculate your Body Mass Index, typically referred to as your BMI.
+            Your age, BMI, blood pressure, and history of family disease are all relevant factors in determining this placement. 
+             Following each statement or question, you will be asked to either input or select some generic medical information about yourself.
+              Upon filling out the entire form, clicking the submit button will analyze your answers and calculate which of the four risk categories 
+              most accurately describes you (low, moderate, high, and uninsurable).
+            Please note that this a very generic form and is not sponsored (currently) by any insurance company, if you are seeking medical coverage, 
+            do not use this as precise basis.
+            </p><br />
+
+            <!-- Selecting Age -->
+    <label>Please select your age range.</label>
+    <select id="age">
+        <option>Please Select</option>
+        <option value="0">Less than 30</option>
+        <option value="10">31 - 45</option>
+        <option value="20">46 - 60</option>
+        <option value="30">Greater than 60</option>
+    </select><br /><br />
+
+ <!-- Selecting weight -->
+    <label>Please input your weight in pounds.</label>
+    <form>
+        <input type="number" id="weightPounds" name="weightPounds">
+    </form><br /><br />
+
+ <!-- Selecting height Part  -->
+    <label>Please select your height in feet. (i.e. If you are 5 foot 7 inches select a 5) </label>
+    <select id="foot">
+        <option>Please Select</option>
+        <option value="0">0</option>
+        <option value="12">1</option>
+        <option value="24">2</option>
+        <option value="36">3</option>
+        <option value="48">4</option>
+        <option value="60">5</option>
+        <option value="72">6</option>
+        <option value="84">7</option>
+        <option value="96">8</option>
+    </select><br />
+    
+     <!-- Selecting Height Part 2 -->
+    <label>Please select your height in inches (i.e. If you are 5 foot 7 inches select a 7) .</label>
+    <select id="inch">
+        <option>Please Select</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+    </select><br /><br />
+
+     <!-- Selecting Systolic BP -->
+    <label>Please select your systolic blood pressure range. This is the upper number when looking at your blood pressure.</label>
+    <select id="SYSBP">
+        <option>Please Select</option>
+        <option value="0">Less than 120</option>
+        <option value="1">120 - 129</option>
+        <option value="2">130 - 139</option>
+        <option value="3">140 - 180</option>
+        <option value="4">Greater than 180</option>
+    </select><br />
+  <!-- Selecting Diastolic Blood Pressure -->
+    <label>Please select your diastolic blood pressure range. This is the lower number when looking at your blood pressure.</label>
+    <select id="DiaBP">
+        <option>Please Select</option>
+        <option value="0">Less than 80</option>
+        <option value="1">80 - 89</option>
+        <option value="2">90 - 120</option>
+        <option value="3">Greater than 120</option>
+    </select><br /><br />
+
+      <!-- Selecting Family History -->
+    
+    <label>Do you have a family history of diabetes?</label>
+    <select id="diabetes">
+        <option>Please Select</option>
+        <option value="10">Yes</option>
+        <option value="0">No</option>
+    </select><br />
+
+    <label>Do you have a family history of cancer?</label>
+    <select id="cancer">
+        <option>Please Select</option>
+        <option value="10">Yes</option>
+        <option value="0">No</option>
+    </select><br />
+
+    <label>Do you have a family history of Alzheimer's?</label>
+    <select id="alzheimer">
+        <option>Please Select</option>
+        <option value="10">Yes</option>
+        <option value="0">No</option>
+    </select><br /><br /><br />
+
+  <!-- Calculating -->
+
+    <button onclick="calculateRisk()">Submit</button>
+    <p id="results"></p>
+
+    <script>
+        console.log("Starting Health Insurance Risk Calculator...");
+        
+        function calculateRisk() {
+            console.log("calculateRisk()");
+        
+            let age = document.getElementById("age").selectedOptions[0].value;
+            let weightPounds = document.getElementById("weightPounds").value;
+            let heightFoot = document.getElementById("foot").selectedOptions[0].value;
+            let heightInch = document.getElementById("inch").selectedOptions[0].value;
+            let Systolic = document.getElementById("SYSBP").selectedOptions[0].value;
+            let Diastolic = document.getElementById("DiaBP").selectedOptions[0].value;
+            let diabetes = document.getElementById("diabetes").selectedOptions[0].value;
+            let cancer = document.getElementById("cancer").selectedOptions[0].value;
+            let alzheimer = document.getElementById("alzheimer").selectedOptions[0].value;
+        
+            console.log("Points from Age: "+age);
+            console.log("Weight in Pounds: "+weightPounds);
+            console.log("Foot Height in Inches: "+heightFoot);
+            console.log("Inch Height: "+heightInch);
+            console.log("Systolic Blood Pressure Range Indicator: "+Systolic);
+            console.log("Diastolic Blood Pressure Range Indicator: "+Diastolic);
+            console.log("Points from Diabetes: "+diabetes);
+            console.log("Points from Cancer: "+cancer);
+            console.log("Points from Alzheimer's Disease: "+alzheimer);
+
+            let weightKG = weightPounds*0.45359237;
+    let totalInchHeight = +heightFoot + +heightInch;
+    let heightM = totalInchHeight*0.0254;
+    let totalBloodPressure = +Systolic + +Diastolic;
+
+    console.log("Weight in kg: "+weightKG);
+    console.log("Total Height in Inches: "+totalInchHeight);
+    console.log("Height in Meters: "+heightM);
+    console.log("Total Blood Pressure Indicator: "+totalBloodPressure);
+
+    let BMI = weightKG/(heightM**2);
+
+    console.log("BMI: "+BMI);
+
+    var BMIpoints;
+    if (BMI<24.9) {
+        BMIpoints = 0
+    } else if (BMI<29.9) {
+        BMIpoints = 30
+    } else {
+        BMIpoints = 75
+    };
+
+    console.log("Points from BMI: "+BMIpoints);
+
+    var bloodPressurePoints
+    if (totalBloodPressure < 1) {
+        bloodPressurePoints = 0
+    } else if (totalBloodPressure < 2) {
+        bloodPressurePoints = 15
+    } else if (totalBloodPressure <= 3) {
+        bloodPressurePoints = 30
+    } else if (totalBloodPressure <= 5) {
+        bloodPressurePoints = 75
+    } else {
+        bloodPressurePoints = 100
+    };
+
+    console.log("Points from Blood Pressure: "+bloodPressurePoints);
+
+    let totalScore = +age + +BMIpoints + +bloodPressurePoints + +diabetes + +cancer + +alzheimer;
+
+    console.log("Total Points: "+totalScore);
+
+    var risk
+    if (totalScore <= 20) {
+        risk = ("low risk")
+    } else if (totalScore <= 50) {
+        risk = ("moderate risk")
+    } else if (totalScore <= 75) {
+        risk = ("high risk")
+    } else {
+        risk = ("uninsurable")
+    };
+
+    document.getElementById("results").innerHTML = "Based on these responses, you fall in the " +risk + " category.";
+}
+
+
+        
+
+
+
+ </script>
+
+</body>
+
+</html>

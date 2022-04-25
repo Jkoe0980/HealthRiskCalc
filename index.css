@@ -1,0 +1,41 @@
+
+body {
+    background-color: #d6e6ff;
+}
+
+h1 {
+    
+    color: #2e00a3;
+    text-align: center;
+}
+
+h2 {
+    
+    color: #2e00a3;
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+p {
+    
+    color: #4100e6;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;    
+}
+
+label {
+    
+    color: #4100e6; 
+}
+select {
+    
+    color: #4100e6;
+}
+
+button {
+    
+    background-color: #69a3ff; 
+    color: #2e00a3;  
+}
